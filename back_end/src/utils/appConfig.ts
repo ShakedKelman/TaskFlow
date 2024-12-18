@@ -26,7 +26,7 @@ class DevAppconfig extends BaseAppConfig {
         ...this.dbConfig,
         host: 'localhost',
         port: 3306,
-        database: 'vacations',                
+        database: 'task_flow',                
     };
 }
 

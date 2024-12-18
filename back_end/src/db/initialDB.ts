@@ -19,10 +19,6 @@ const createTables = async () => {
     `;
     await runQuery(Q);
 
-    // Index for email is automatically created due to UNIQUE constraint
-    // We do not need to create an additional index
-    // Removed redundant index creation for email
-
     Q = `
     CREATE TABLE IF NOT EXISTS tasks (
         id INT AUTO_INCREMENT PRIMARY KEY,

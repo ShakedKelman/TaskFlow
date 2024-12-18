@@ -19,6 +19,7 @@ const createTables = async () => {
     `;
     await runQuery(Q);
 
+
     Q = `
     CREATE TABLE IF NOT EXISTS tasks (
         id INT AUTO_INCREMENT PRIMARY KEY,

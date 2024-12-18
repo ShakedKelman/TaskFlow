@@ -19,8 +19,12 @@ const createTables = async () => {
     `;
     await runQuery(Q);
 
+<<<<<<< Updated upstream
     // Create the tasks table
     // Fields: title, description, status, priority, dueDate, createdByUserId, assignedToUserId, createdAt, updatedAt
+=======
+   
+>>>>>>> Stashed changes
     Q = `
     CREATE TABLE IF NOT EXISTS tasks (
         id INT AUTO_INCREMENT PRIMARY KEY,

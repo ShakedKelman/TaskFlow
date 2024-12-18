@@ -3,8 +3,8 @@ import runQuery, { closeDB } from "./dal";
 const fs = require('fs');
 const path = require('path');
 
+
 const createTables = async () => {
-    // Create the users table
     let Q = `
     CREATE TABLE IF NOT EXISTS users (
         id INT AUTO_INCREMENT PRIMARY KEY,
@@ -32,14 +32,12 @@ const createTables = async () => {
         assignedToUserId INT NULL,
         createdAt DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
         updatedAt DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-        FOREIGN KEY (createdByUserId) REFERENCES users(id),
-        FOREIGN KEY (assignedToUserId) REFERENCES users(id)
+        FOREIGN KEY (createdByUserId) REFERENCES users(id) ON DELETE CASCADE,
+        FOREIGN KEY (assignedToUserId) REFERENCES users(id) ON DELETE CASCADE
     );
     `;
     await runQuery(Q);
 
-    // Create the task_assignments table (if you want multiple users per task)
-    // This table can track users who are "watching" or "collaborating" on tasks.
     Q = `
     CREATE TABLE IF NOT EXISTS task_assignments (
         taskId INT NOT NULL,
@@ -50,8 +48,6 @@ const createTables = async () => {
     );
     `;
     await runQuery(Q);
-
- 
 };
 
 const insertData = async () => {
@@ -60,7 +56,6 @@ const insertData = async () => {
     const hashedPassword3 = await encryptPassword('1234'); // For Admin
     const hashedPassword4 = await encryptPassword('1234'); // For Non-Admin
 
-    // Insert sample users
     let Q = `
         INSERT IGNORE INTO users (firstName, lastName, email, hashedPassword, isAdmin, token)
         VALUES 
@@ -71,8 +66,6 @@ const insertData = async () => {
     `;
     await runQuery(Q, [hashedPassword1, hashedPassword2, hashedPassword3, hashedPassword4]);
 
-    // Insert sample tasks
-    // We'll create a few tasks with various statuses and priorities.
     Q = `
         INSERT IGNORE INTO tasks (title, description, status, priority, dueDate, createdByUserId, assignedToUserId)
         VALUES
@@ -85,9 +78,6 @@ const insertData = async () => {
     `;
     await runQuery(Q);
 
-    // Insert sample data into task_assignments
-    // For example, user 1 is watching tasks 1 and 2, user 2 is watching task 1.
-    // These entries can represent collaborators or watchers.
     Q = `
         INSERT IGNORE INTO task_assignments (taskId, userId)
         VALUES 
@@ -96,18 +86,18 @@ const insertData = async () => {
             (2, 1);
     `;
     await runQuery(Q);
-
-
 };
 
-// Since tasks don't need images by default, we can remove or comment out the copyImages function
-// or repurpose it later for something else if you need attachments.
-
 const runSetup = async () => {
-    await createTables();
-    await insertData();
-    await closeDB();
-    console.log("Done creating tables and inserting data for the task system");
+    try {
+        await createTables();
+        await insertData();
+    } catch (err) {
+        console.error("Error during setup:", err);
+    } finally {
+        await closeDB();
+        console.log("Done creating tables and inserting data for the task system");
+    }
 };
 
 runSetup().catch(err => {

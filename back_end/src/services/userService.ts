@@ -4,14 +4,15 @@ import runQuery from "../db/dal";
 import UserModel from "../models/UsersModel";
 import { ResultSetHeader } from "mysql2";
 
-
+// Register a new user
 export async function register(user: UserModel): Promise<string> {
     // Validate user input
     user.validate();
 
     // Check if the email already exists in the database
-    const emailCheckQuery = "SELECT COUNT(*) as count FROM users WHERE email = ?";
-    const emailCheckResult = await runQuery(emailCheckQuery, [user.email]);
+   // Check if the email already exists in the database
+   const emailCheckQuery = "SELECT 1 FROM users WHERE email = ? LIMIT 1";
+   const emailCheckResult = await runQuery(emailCheckQuery, [user.email]);
     if (emailCheckResult[0].count > 0) {
         throw new ValidationError("Email already exists");
     }
@@ -28,7 +29,7 @@ export async function register(user: UserModel): Promise<string> {
     const insertParams = [
         user.firstName,
         user.lastName,
-        hashedPassword, // Use the hashed password here
+        hashedPassword, 
         user.email,
         user.isAdmin || false 
     ];
@@ -52,9 +53,10 @@ export async function register(user: UserModel): Promise<string> {
     return user.token;
 }
 
+// User login function
 
 export async function login(email: string, password: string) {
-    let q = `SELECT * FROM users WHERE email=?;`;
+    let q = `SELECT id, hashedPassword, token FROM users WHERE email = ?;`;
     const res = await runQuery(q, [email]);
     console.log('login user query', res);
     
@@ -75,6 +77,8 @@ export async function login(email: string, password: string) {
     return newToken;
 }
 
+// Get all users
+
 export async function getAllUsers() {
     const q = `SELECT * FROM users;`;
     const res = await runQuery(q);
@@ -91,10 +95,3 @@ export async function getAllUsers() {
 }
 
 
-
-export async function getApiCount() {
-    let q = `SELECT * FROM counts`;
-    const res = await runQuery(q);
-    const { apicall: currentI } = res[0]
-    return currentI;
-}

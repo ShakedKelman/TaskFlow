@@ -2,7 +2,7 @@
 import { NextFunction, Request, Response, Router } from "express";
 import { appConfig } from "../utils/appConfig";
 import { StatusCode } from "../models/statusEnum";
-import VacationModel from "../models/VacationsModel";
+import VacationModel from "../models/TaskModel";
 import { addVacation, deleteVacation, editVacation, getVacations, getVacationsPaginated } from "../services/vacationsService";
 import { UploadedFile } from "express-fileupload";
 import { getFollowersForVacation } from "../services/followersService";

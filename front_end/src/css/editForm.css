@@ -1,0 +1,63 @@
+.edit-vacation-form {
+    max-width: 500px;  /* Reduced from 600px */
+    margin: 1.5rem auto;  /* Reduced from 2rem */
+    padding: 1.5rem;  
+    background-color: rgba(75, 149, 209, 0.05);  /* Very light, translucent version of #4B95D1 */
+    border: 2px solid #4b95d1;  
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+
+}
+
+.form-title {
+    text-align: center;
+    margin-bottom: 1.5rem;  /* Reduced from 2rem */
+    color: #4b95d1;
+}
+
+.image-preview {
+    text-align: center;
+    margin: 1.5rem 0; /* Increased top and bottom margin */
+    border: 1px solid #007b7f4f;
+
+}
+
+.image-preview img {
+    border-radius: 8px;
+     margin-top: 20px;
+
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.button-group button {
+    background-color: white;
+    color: #4B95D1;
+    border: 1px solid #007b7f4f;
+    border-radius: 6px;
+    transition: all 0.2s ease-in-out;
+}
+.button-group button:hover { 
+
+    background-color: #f0f0f0;
+    transform: translateY(-1px);
+    box-shadow: 0 2px 8px rgba(0, 123, 127, 0.1);
+}
+.form-group {
+    margin-bottom: rem;
+}
+
+.edit-vacation-form button {
+    background-color: white;
+    color: #4B95D1;
+    border: 1px solid #007b7f4f;
+    border-radius: 6px;
+    transition: all 0.2s ease-in-out;
+    padding: 8px 16px;
+    margin: 10px;
+}
+
+.edit-vacation-form button:hover {
+    background-color: #4b95d1;
+    transform: translateY(-1px);
+    box-shadow: 0 2px 8px rgba(0, 123, 127, 0.1);
+}

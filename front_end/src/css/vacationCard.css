@@ -1,0 +1,74 @@
+.vacation-card {
+    background-color: #f8f9fa; /* Light gray background */
+    border: 1px solid #dee2e6; /* Light gray border */
+    border-radius: 0.25rem;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    position: relative;
+}
+
+.vacation-card-img-container {
+    position: relative;
+    width: 100%;
+    height: 250px; /* Set a fixed height for both image and placeholder */
+    background-color: #dee2e6; /* Default light gray background for no image */
+}
+
+.vacation-card-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    position: relative;
+}
+
+.vacation-card-title {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background-color: rgba(255, 255, 255, 0.8); /* Semi-transparent white background */
+    padding: 5px 0;
+    text-align: center;
+    font-size: 1.25rem;
+    font-weight: bold;
+    color: #212529;
+}
+
+.vacation-card-body {
+    padding: 1rem;
+}
+
+.vacation-card-text {
+    color: #495057; /* Darker gray for text */
+}
+
+.vacation-card-actions {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.vacation-card-favorites {
+    display: flex;
+    align-items: center;
+}
+
+.vacation-card-favorites span {
+    margin-left: 0.5rem;
+}
+
+.vacation-card-favorites span.following {
+    color: green;
+}
+
+.vacation-card-buttons button {
+    margin-right: 0.5rem;
+}
+.vacation-card-price {
+    background-color: #A7D8FF; /* Updated to match navbar */
+    color: #01203a; 
+    padding: 5px; /* Add some padding for aesthetics */
+    border-radius: 0.25rem; /* Optional: Make the corners rounded */
+    text-align: center;
+
+}

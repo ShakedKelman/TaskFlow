@@ -1,0 +1,7 @@
+.custom-radio {
+    margin-bottom: 1rem; /* Space between radio buttons */
+}
+
+.custom-radio .form-check-label {
+    font-weight: 500; /* Make label bold */
+}
